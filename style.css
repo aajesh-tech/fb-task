@@ -1,0 +1,516 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #F0F2F5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #050505;
+    overflow-x: hidden;
+}
+
+input, button {
+    font-family: inherit;
+}
+
+/* Header Navbar Configuration */
+#top-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    flex-basis: 360px;
+}
+
+.fb-logo-text {
+    color: #1877F2;
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-right: 12px;
+}
+
+.search-container input {
+    background-color: #F0F2F5;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 50px;
+    font-size: 15px;
+    width: 240px;
+    outline: none;
+}
+
+.nav-center {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    flex: 1;
+    max-width: 680px;
+}
+
+.nav-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 30px;
+    height: 100%;
+    color: #65676B;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 3px solid transparent;
+    box-sizing: border-box;
+}
+
+.nav-tab.active {
+    color: #1877F2;
+    border-bottom-color: #1877F2;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-basis: 360px;
+}
+
+.user-profile-tab {
+    display: flex;
+    align-items: center;
+    padding: 4px 8px 4px 4px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-right: 8px;
+}
+
+.user-profile-tab:hover {
+    background-color: #F2F3F5;
+}
+
+.user-profile-tab span {
+    font-size: 14px;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+.circle-btn {
+    width: 40px;
+    height: 40px;
+    background-color: #E4E6EB;
+    border-radius: 50%;
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+.circle-btn:hover {
+    background-color: #D8DADF;
+}
+
+/* Primary Screen Frame Split Grid Layout */
+.app-layout {
+    display: flex;
+    margin-top: 56px;
+    height: calc(100vh - 56px);
+    width: 100%;
+}
+
+/* Left Workspace Panel */
+.panel-left {
+    flex-basis: 360px;
+    padding: 16px 8px;
+    height: 100%;
+    box-sizing: border-box;
+    position: sticky;
+    top: 56px;
+}
+
+.shortcut-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.shortcut-item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.shortcut-item:hover {
+    background-color: #E4E6EB;
+}
+
+.item-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.bg-blue { background-color: #1877F2; }
+.bg-purple { background-color: #8B5CF6; }
+.bg-teal { background-color: #06B6D4; }
+.bg-orange { background-color: #F97316; }
+.bg-red { background-color: #EF4444; }
+.bg-yellow { background-color: #F59E0B; }
+
+.item-label {
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 12px;
+}
+
+/* Center Feed Container Layout */
+.panel-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 24px 16px;
+}
+
+.feed-scroll-container {
+    width: 100%;
+    max-width: 590px;
+}
+
+/* Stories Panel Alignment */
+.stories-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.story-card {
+    flex: 1;
+    height: 200px;
+    background-color: #FFFFFF;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.story-avatar {
+    width: 40px;
+    height: 40px;
+    background-color: #1877F2;
+    border-radius: 50%;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    z-index: 10;
+    border: 3px solid #1877F2;
+}
+
+.story-bg-placeholder {
+    width: 100%;
+    height: 100%;
+    background-color: #E4E6EB;
+    transition: transform 0.3s ease;
+}
+
+.story-card:hover .story-bg-placeholder {
+    transform: scale(1.03);
+}
+
+.story-name {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 600;
+    text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    z-index: 10;
+}
+
+.active-story .story-name {
+    color: #050505;
+    text-shadow: none;
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background: #FFFFFF;
+    text-align: center;
+    padding: 8px 0;
+}
+
+/* Modular Document Feed Cards Base */
+.feed-card {
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+}
+
+/* Create Post Box Specifics */
+.post-top-row {
+    display: flex;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #E4E6EB;
+}
+
+.post-top-row input {
+    flex: 1;
+    background-color: #F0F2F5;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 16px;
+    font-size: 15px;
+    outline: none;
+}
+
+.post-top-row input:hover {
+    background-color: #E4E6EB;
+}
+
+.post-bottom-row {
+    display: flex;
+    padding-top: 8px;
+}
+
+.action-trigger {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #65676B;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.action-trigger:hover {
+    background-color: #F2F3F5;
+}
+
+/* Generic Regular Feed Posts Layout */
+.post-header-area {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.poster-identity h6 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.timestamp-meta {
+    font-size: 13px;
+    color: #65676B;
+}
+
+.post-body-text p {
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 0 0 12px 0;
+}
+
+.post-media-frame {
+    margin: 0 -16px;
+    border-top: 1px solid #E4E6EB;
+    border-bottom: 1px solid #E4E6EB;
+}
+
+.media-placeholder-graphic {
+    width: 100%;
+    height: 340px;
+    background-color: #E4E6EB;
+}
+
+.post-feedback-summary {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #E4E6EB;
+}
+
+.stat-counter {
+    font-size: 13px;
+    color: #65676B;
+}
+
+.post-footer-actions {
+    display: flex;
+    padding-top: 4px;
+}
+
+.footer-trigger {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 8px;
+    color: #65676B;
+    font-weight: 600;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.footer-trigger:hover {
+    background-color: #F2F3F5;
+}
+
+/* Right Panel Contextual Settings Interface Module */
+.panel-right {
+    flex-basis: 360px;
+    padding: 16px;
+    height: 100%;
+    box-sizing: border-box;
+    position: sticky;
+    top: 56px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* The Interactive Component Box Container from Image link */
+.settings-overlay-card {
+    width: 100%;
+    max-width: 335px;
+    background-color: #FFFFFF;
+    border-radius: 8px;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+    padding: 16px;
+    box-sizing: border-box;
+    height: fit-content;
+}
+
+.card-header-user {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.card-header-user:hover {
+    background-color: #F2F3F5;
+}
+
+.user-meta-info {
+    margin-left: 12px;
+}
+
+.user-meta-info h5 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.user-meta-info p {
+    margin: 2px 0 0 0;
+    font-size: 14px;
+    color: #65676B;
+}
+
+.divider-line {
+    height: 1px;
+    background-color: #CED0D4;
+    margin: 12px 0;
+}
+
+.feedback-row-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.feedback-row-item:hover {
+    background-color: #F2F3F5;
+}
+
+.feedback-circle-icon {
+    width: 36px;
+    height: 36px;
+    background-color: #E4E6EB;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.feedback-label-stack {
+    margin-left: 12px;
+}
+
+.feedback-label-stack h6 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.feedback-label-stack p {
+    margin: 2px 0 0 0;
+    font-size: 13px;
+    color: #65676B;
+    line-height: 1.3;
+}
+
+/* Nested Options Settings Layout list configuration */
+.settings-menu-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu-list-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.menu-list-item:hover {
+    background-color: #F2F3F5;
+}
+
+.menu-item-icon {
+    width: 36px;
+    height: 36px;
+    background-color: #E4E6EB;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.menu-item-text {
+    font-size: 15px;
+    font-weight: 600;
+    margin-left: 12px;
+}
+
+/* Avatar Blocks Fallback Shapes definitions */
+.small-avatar { width: 28px; height: 28px; background-color: #CCD0D5; border-radius: 50%; }
+.mid-avatar { width: 40px; height: 40px; background-color: #CCD0D5; border-radius: 50%; margin-right: 8px; flex-shrink: 0; }
+.large-avatar { width: 60px; height: 60px; background-color: #CCD0D5; border-radius: 50%; flex-shrink: 0; }
+
+/* Responsive adjustments for simple viewport changes */
+@media (max-width: 1100px) {
+    .panel-left { display: none; }
+}
+
+@media (max-width: 900px) {
+    .panel-right { display: none; }
+}
